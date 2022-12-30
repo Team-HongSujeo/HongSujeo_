@@ -37,59 +37,54 @@ router.post('/favorited', (req, res) => {
 })
 
 
-
-
-
-
-
-
+// client의 Favorite.js파일과 관련
+// 이미 Favorited 버튼을 누른 상황인 경우, 버튼을 누르면 즐겨찾기를 취소해야함
 router.post('/removeFromFavorite', (req, res) => {
-
+    // Favorite DB에 있는 정보를 지운다
     Favorite.findOneAndDelete({ productId: req.body.productId, userFrom: req.body.userFrom })
+        // 쿼리 실행
         .exec((err, doc) => {
             if (err) return res.status(400).send(err)
             res.status(200).json({ success: true, doc })
         })
-
 })
 
 
-
-
+// client의 Favorite.js파일과 관련
+// 아직 Favorited 버튼을 누르지 않은 경우, 버튼을 누르면 즐겨찾기를 추가해야함
+// 프론트에서 받아온 정보들을 Favorite.js에 있는 DB에 넣어주면 됨
 router.post('/addToFavorite', (req, res) => {
+    // 프론트 쪽의 Favorite.js에서 보낸 req.body에는 variables가 들어있음
+    const favorite = new Favorite(req.body) // favorite이라는 새로운 인스턴스 생성
 
-    const favorite = new Favorite(req.body)
-
-    favorite.save((err, doc) => {
+    favorite.save((err, doc) => {   // save를 통해 req.body에 있는 모든 정보들(variables)이 favorite 인스턴스에 모두 들어감
         if (err) return res.status(400).send(err)
         return res.status(200).json({ success: true })
     })
-
 })
 
 
 
-
+// client의 FavoritePage.js파일과 관련
 router.post('/getFavoredProduct', (req, res) => {
-
+    // Favorite DB에서 즐겨찾기를 하려는 사람의 userFrom을 찾고
     Favorite.find({ 'userFrom': req.body.userFrom })
+        // 이를 바탕으로 쿼리문 실행, 좋아요를 누른 식당들의 정보가 favorites에 array형식으로 담겨서 프론트에 res로 보냄
         .exec((err, favorites) => {
             if (err) return res.status(400).send(err)
             return res.status(200).json({ success: true, favorites })
         })
-
 })
 
+// FavoritePage.js에서 보낸 request
 router.post('/removeFromFavorite', (req, res) => {
-
+    // Favorite DB에서 즐겨찾기를 해제 하려는 사람의 userFrom과 해당 식당을 가리키는 productId를 찾고
     Favorite.findOneAndDelete({ productId: req.body.productId, userFrom: req.body.userFrom })
+        // 이를 바탕으로 쿼리문 실행, result에는 쿼리가 실행된 결과가 담겨 프론트에 res로 보냄
         .exec((err, result) => {
             if (err) return res.status(400).send(err)
             return res.status(200).json({ success: true })
         })
-
 })
-
-
 
 module.exports = router;

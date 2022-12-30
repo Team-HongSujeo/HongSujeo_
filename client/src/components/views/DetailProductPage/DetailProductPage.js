@@ -7,11 +7,15 @@ import { Row, Col } from 'antd';
 import ProductImage from './Sections/ProductImage';
 import ProductInfo from './Sections/ProductInfo';
 import Comments from './Sections/Comments';
-//import Favorite from './Sections/Favorite';
+import Favorite from './Sections/Favorite';
 
 function DetailProductPage(props) {
-
   //const productId = props.match.params.productId
+
+  /* useParams는 리액트에서 제공하는 Hook으로 동적으로 라우팅을 생성하기 위해 사용
+    URL에 포함되어있는 Key, Value 형식의 객체를 반환해주는 역할
+    Route 부분에서 Key를 지정해주고, 해당하는 Key에 적합한 Value를 넣어 URL을 변경시키면, useParams를 통해 Key, Value 객체를 반환받아 확인할 수 있음
+    반환받은 Value를 통해 게시글을 불러오거나, 검색목록을 변경시키는 등 다양한 기능으로 확장시켜 사용할 수 있음. */
   const { productId } = useParams(); 
   const variable = {  productId: productId }
 
@@ -54,12 +58,12 @@ function DetailProductPage(props) {
       <br />
 
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <button> Favorite </button>
+        {/* <button> Favorite </button> 보민이 코드 */}
         {/* 맨 위의 useState에서 Product를 여기에 사용,
-        3 가지 props를 적용하여 Favorite.js에서 function Favorite(props)의 props에 적용됨
+        아래에서 3 가지 props를 적용하여 Favorite.js에서 function Favorite(props)의 props에 적용됨
         productId와 userFrom는 Favorite.js에서 variables에서 사용됨, userId는 LoginPage.js와 관련 있음
         로그인된 유저의 정보가 localStorage에 저장되어있음 */}
-        {/*<Favorite productInfo={Product} productId={productId} userFrom={localStorage.getItem('userId')} />*/}
+        <Favorite productInfo={Product} productId={productId} userFrom={localStorage.getItem('userId')} />
       </div>
 
       <Row gutter={[16, 16]} >

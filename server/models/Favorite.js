@@ -14,7 +14,14 @@ const favoriteSchema = mongoose.Schema({
     },
     productTitle: {
         type: String
+    },
+    productTypes: {
+        type: String
+    },
+    productPrice: {
+        type: String
     }
+
 }, { timestamps: true })
 
 const Favorite = mongoose.model('Favorite', favoriteSchema);

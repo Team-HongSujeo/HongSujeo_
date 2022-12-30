@@ -17,6 +17,7 @@ import Auth from '../hoc/auth';
 import NavBar from "./views/NavBar/NavBar";
 import UploadProductPage from "./views/UploadProductPage/UploadProductPage.js";
 import DetailProductPage from "./views/DetailProductPage/DetailProductPage";
+import FavoritePage from "./views/FavoritePage/FavoritePage";
 
 //null   Anyone Can go inside
 //true   only logged in user can go inside
@@ -50,6 +51,7 @@ function App() {
               // RegisterPage도 로그인한 유저는 출입할 수 없으므로 false
               // UploadProductPage는 로그인한 유저가 출입할 수 있으므로 true
               // DetailProductPage는 아무나 들어갈 수 있으므로 null
+              // FavoritePage는 로그인한 유저만 볼 수 있으므로 true
 
               // admin한 유저(관리자)만 들어갈 수 있는 페이지를 만들기 위해서는 다음과 같이 코딩한다.
               // <Route  path="/" element={Auth(LandingPage, null, true)} />
@@ -61,6 +63,7 @@ function App() {
             {/* product의 _id를 endpointer로 넣기 위해서는 :를 꼭 포함시켜야함!
             그래야 product/_id형식의 endpointer로 인식 */}
             <Route  path="/product/:productId" element={Auth(DetailProductPage, null)} />
+            <Route  path="/favorite" element={Auth(FavoritePage, true)} />
           </Routes>
         </div>
       </Suspense>
