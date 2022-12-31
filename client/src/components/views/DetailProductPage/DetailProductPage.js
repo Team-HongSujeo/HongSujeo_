@@ -17,7 +17,7 @@ function DetailProductPage(props) {
     Route 부분에서 Key를 지정해주고, 해당하는 Key에 적합한 Value를 넣어 URL을 변경시키면, useParams를 통해 Key, Value 객체를 반환받아 확인할 수 있음
     반환받은 Value를 통해 게시글을 불러오거나, 검색목록을 변경시키는 등 다양한 기능으로 확장시켜 사용할 수 있음. */
   const { productId } = useParams(); 
-  const variable = {  productId: productId }
+  const variable = { productId: productId }
 
   const [Product, setProduct] = useState([]) // 상품 설정
   const [CommentLists, setCommentLists] = useState([]) // 댓글 설정
@@ -49,7 +49,9 @@ function DetailProductPage(props) {
   }
 
   return (    
-    <div style={{ width: '100%', padding: '3rem 4rem' }}>
+    <div style={{ width: '100%', padding: '3rem 4rem' }}> {/* rem은 글씨 사이즈, 루트엘리먼트의 폰트 사이즈를 기준으로 동작 */}
+      {/* px(픽셀), rem, em의 차이
+      https://dwbutter.com/entry/CSS-%EC%86%8D%EC%84%B1-%EB%8B%A8%EC%9C%84-px-rem-em-%EC%82%AC%EC%9A%A9%EC%98%88%EC%8B%9C-%EA%B3%84%EC%82%B0-%EA%B8%B0%EC%A4%80 */}
 
       <div style={{ display: 'flex', justifyContent: 'center' }}>
           <h1>{Product.title}</h1>
@@ -75,12 +77,12 @@ function DetailProductPage(props) {
           <Col lg={12} sm={24}>
               {/* ProductInfo.js에서 가져온 내용을 위치시키는 곳 */}
               <ProductInfo detail={Product} />
+              {/* Comments.js에서 props로 postId를 넘겨주기 위해, CommentLists=~~~의 코드를 작성 */}
+              {/* refreshFunction은 결국 updateComment 함수를 실행하는 것 */}
+              {/* 기존 코드와 달리, ProductInfo 하단에 위치시켜, 댓글 UI를 더 깔끔하게 정리 */}
+              <Comments CommentLists={CommentLists} postId={productId} refreshFunction={updateComment} />
           </Col>
-          {/* Comments.js에서 props로 postId를 넘겨주기 위해, CommentLists=~~~의 코드를 작성 */}
-          {/* refreshFunction은 결국 updateComment 함수를 실행하는 것 */}
-          <Comments CommentLists={CommentLists} postId={productId} refreshFunction={updateComment} />
       </Row>
-
     </div>
   )
 }

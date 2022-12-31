@@ -70,11 +70,12 @@ function FavoritePage() {
             </div>
         ) */
         
-        /*
-        // RestaurantType 부분, switch case 부분은 productTypes부분이 숫자로 나오는 것을 막기 위해 임시로 설정한 방법 => 제대로 작동하지 않음!
+        
+        // RestaurantType 부분, switch case 부분은 productTypes부분이 숫자로 나오는 것을 막기 위해 임시로 설정한 방법
         let RestaurantType;
-
-        switch (favorite.productTypes){
+        
+        // DB에서 favorite.productTypes가 String이므로, Number를 통해 숫자로 변경
+        switch (Number(favorite.productTypes)){
             case 1:
                 RestaurantType = "한식";
                 break;
@@ -97,7 +98,6 @@ function FavoritePage() {
                 RestaurantType = "디저트";
                 break;
             }
-        */
 
         return <tr key={index}>
             {/* 실제로 좋아요 눌렀을 때 저장된 데이터가 사용자에게 보여지는 부분, 어떤 내용을 보여줄 지 여기서 결정 */}
@@ -107,8 +107,8 @@ function FavoritePage() {
                 <td>{favorite.productTitle}</td>
             {/* </Popover> */}
 
-            {/* 식당의 types을 알려줌 */}
-            <td>{favorite.productTypes}</td>
+            {/* 식당의 types을 알려줌, switch case를 통해 숫자가 아닌 음식의 종류가 나오게 설정 */}
+            <td>{RestaurantType}</td>
 
             {/* Remove 버튼을 누르면 즐겨찾기 삭제 */}
             {/* 평소대로라면 onClick={onClickDelete}를 사용하여 function을 구현했지만, 이번에는 다르게 구현해야 함

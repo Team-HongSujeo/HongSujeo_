@@ -21,7 +21,6 @@ const favoriteSchema = mongoose.Schema({
     productPrice: {
         type: String
     }
-
 }, { timestamps: true })
 
 const Favorite = mongoose.model('Favorite', favoriteSchema);

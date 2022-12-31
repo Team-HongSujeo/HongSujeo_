@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux'; // redux를 통해 로그인된 유저의 정보를 가져오기 위해 사용
 import SingleComment from './SingleComment';
 import ReplyComment from './ReplyComment';
+
 const { TextArea } = Input;
 
 function Comments(props) {
@@ -71,13 +72,13 @@ function Comments(props) {
 
             <form style={{ display: 'flex' }} onSubmit={onSubmit}>
                 <TextArea
-                    style={{ width: '100%', borderRadius: '5px' }}
+                    style={{ width: '100%', borderRadius: '5px' }}  // borderRadius는 테두리를 둥글게 하기 위한 코드
                     onChange={handleChange} // 댓글 창에 글을 쓸 수 있게 하기 위한 코드
                     value={Comment} // value에 state을 줘야 함 그렇게 하기 위해 useState사용, 이 Comment는 위의 const variables의 Comment로도 사용
                     placeholder="write some comments"
                 />
                 <br />
-                <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit}>Submit</Button>
+                <Button style={{ width: '25%', height: '52px' }} onClick={onSubmit}>댓글</Button>
             </form>
 
         </div>
