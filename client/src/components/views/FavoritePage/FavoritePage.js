@@ -5,7 +5,7 @@
 import React, { useEffect, useState } from 'react'
 import './favorite.css';
 import Axios from 'axios';
-import { Popover } from 'antd'; // 즐겨찾기한 식당 위에 마우스를 갖다대면 사진이 보이도록 하는 기능
+// import { Popover } from 'antd'; // 즐겨찾기한 식당 위에 마우스를 갖다대면 사진이 보이도록 하는 기능
 //import { IMAGE_BASE_URL } from '../../Config';
 
 function FavoritePage() {
@@ -104,7 +104,7 @@ function FavoritePage() {
             {/* Popover를 통해 즐겨찾기한 식당 위에 마우스를 갖다대면 사진이 보이도록 함 */}
             {/* <Popover content={content} title={`${favorite.productTitle}`} > */}
                 {/* 식당의 이름을 알려줌 */}
-                <td>{favorite.productTitle}</td>
+            <td><a href={`/product/${favorite.productId}`}>{favorite.productTitle}</a></td>
             {/* </Popover> */}
 
             {/* 식당의 types을 알려줌, switch case를 통해 숫자가 아닌 음식의 종류가 나오게 설정 */}
