@@ -13,9 +13,6 @@ function NavBar() {
       setOpen(true);
   };
 
-  // const showDrawer = () => {
-  //   setVisible(true)
-  // };
 
   const onClose = () => {
     setOpen(false)
@@ -30,7 +27,7 @@ function NavBar() {
         <div className="menu_left">
           <LeftMenu mode="horizontal" />
         </div>
-        <div className="menu_rigth">
+        <div className="menu_right">
           <RightMenu mode="horizontal" />
         </div>
         <Button

@@ -91,9 +91,9 @@ router.post('/getFavoredRestaurant', (req, res) => {
 router.post('/removeFromFavorite', (req, res) => {
 
     Favorite.findOneAndDelete({ productId: req.body.productId, userFrom: req.body.userFrom })
-        .exec((err, result) => {
+        .exec((err, doc) => {
             if (err) return res.status(400).send(err)
-            return res.status(200).json({ success: true })
+            return res.status(200).json({ success: true, doc })
         })
 
 })

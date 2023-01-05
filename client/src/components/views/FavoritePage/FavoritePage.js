@@ -79,7 +79,7 @@ function FavoritePage() {
         return <tr key={index}>
             {/* Popover를 통해 즐겨찾기한 식당 위에 마우스를 갖다대면 사진이 보이도록 함 */}
             <Popover content={content} title={`${favorite.productTitle}`} >
-                <td>{favorite.productTitle}</td>
+                <td><a href={`/product/${favorite.productId}`}></a></td>
             </Popover>
             
             {/* 여기에 식당 태그 정보 보여주기 */}

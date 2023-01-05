@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { Comment } = require("../models/Comment");
-
 const { auth } = require("../middleware/auth");
 
 // 프론트 쪽의 Comments.js에서 axios.post('/api/comment/saveComment', variables)에 맞추기 위해 /saveComment

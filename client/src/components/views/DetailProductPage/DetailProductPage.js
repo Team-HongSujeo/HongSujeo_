@@ -77,10 +77,12 @@ function DetailProductPage(props) {
           <Col lg={12} sm={24}>
               {/* ProductInfo */}
               <ProductInfo detail={Product} />
+              <Comments CommentLists={CommentLists} postId={productId} refreshFunction={updateComment} />
+              {/* Comments.js에서 props로 postId를 넘겨주기 위해, CommentLists=~~~의 코드를 작성 */}
+              {/* refreshFunction은 결국 updateComment 함수를 실행하는 것 */}
+              {/* 기존 코드와 달리, ProductInfo 하단에 위치시켜, 댓글 UI를 더 깔끔하게 정리 */}
+      
           </Col>
-          <Comments CommentLists={CommentLists} postId={productId} refreshFunction={updateComment} />
-          {/* Comments.js에서 props로 postId를 넘겨주기 위해, CommentLists=~~~의 코드를 작성 */}
-          {/* refreshFunction은 결국 updateComment 함수를 실행하는 것 */}
       </Row>
 
     </div>
