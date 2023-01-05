@@ -4,10 +4,6 @@ const { Comment } = require("../models/Comment");
 
 const { auth } = require("../middleware/auth");
 
-//=================================
-//             Subscribe
-//=================================
-
 // 프론트 쪽의 Comments.js에서 axios.post('/api/comment/saveComment', variables)에 맞추기 위해 /saveComment
 router.post("/saveComment", (req, res) => {
 

@@ -18,7 +18,7 @@ function Favorite(props) {
         userFrom: userFrom, // 즐겨찾기 누른 사용자 id
         productId: productId,
         productTitle: props.Product.title, // 식당명
-        restaurantType: props.Product.restaurantTypes, // 식당 태그
+        restaurantTypes: props.Product.restaurantTypes, // 식당 태그
     }
 
     // 얼마나 많은 사람이 이 식당을 Favorite 리스트에 넣었는지 그 숫자 정보를 얻기 위한 코드

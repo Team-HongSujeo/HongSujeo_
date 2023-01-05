@@ -7,12 +7,21 @@ import './favorite.css';
 import Axios from 'axios';
 import { Popover } from 'antd'; // 즐겨찾기한 식당 위에 마우스를 갖다대면 사진이 보이도록 하는 기능
 import { RiBookmark3Fill } from "react-icons/ri";
-
+// import {restaurantTypes} from '../../LandingPage/Sections/Datas';
 
 function FavoritePage() {
 
     const [Favorites, setFavorites] = useState([]);
     const user = useSelector(state => state.user);
+    const RestaurantTypes = {
+        1:"한식",
+        2:"양식",
+        3:"중식",
+        4:"일식",
+        5:"퓨전",
+        6:"제과",
+        7:"디저트"
+    }
 
     useEffect(() => {
 
@@ -67,7 +76,6 @@ function FavoritePage() {
             </div>
         )
 
-
         return <tr key={index}>
             {/* Popover를 통해 즐겨찾기한 식당 위에 마우스를 갖다대면 사진이 보이도록 함 */}
             <Popover content={content} title={`${favorite.productTitle}`} >
@@ -75,7 +83,7 @@ function FavoritePage() {
             </Popover>
             
             {/* 여기에 식당 태그 정보 보여주기 */}
-            <td>{favorite.restaurantType}</td>
+            <td>{RestaurantTypes[favorite.restaurantTypes]}</td>
             <td><button onClick={() => onClickDelete(favorite.productId, favorite.userFrom)}>제거</button></td>
         </tr>
     })

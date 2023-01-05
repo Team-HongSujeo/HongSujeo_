@@ -10,6 +10,7 @@ import ProductInfo from './Sections/ProductInfo';
 import Comments from './Sections/Comments';
 import Favorite from './Sections/Favorite';
 
+
 function DetailProductPage(props) {
 
   // before:  const productId = props.match.params.productId  
@@ -20,6 +21,7 @@ function DetailProductPage(props) {
   const { productId } = useParams(); 
   const variable = {  productId: productId };
   const user = useSelector(state => state.user);
+  
 
   const [Product, setProduct] = useState([]); // 상품 설정
   const [CommentLists, setCommentLists] = useState([]); // 댓글 설정

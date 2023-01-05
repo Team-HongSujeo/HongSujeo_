@@ -12,8 +12,8 @@ const favoriteSchema = mongoose.Schema({
     productTitle: {
         type: String
     },
-    restaurantType: {
-        type: String
+    restaurantTypes: {
+        type: Number
     }
 }, { timestamps: true })
 
