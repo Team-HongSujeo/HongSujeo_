@@ -74,8 +74,8 @@ function FavoritePage() {
         // RestaurantType 부분, switch case 부분은 productTypes부분이 숫자로 나오는 것을 막기 위해 임시로 설정한 방법
         let RestaurantType;
         
-        // DB에서 favorite.productTypes가 String이므로, Number를 통해 숫자로 변경
-        switch (Number(favorite.productTypes)){
+        // DB에서 productTypes를 Number로 바꿨으므로, type 변경 없이 switch case문 바로 사용
+        switch (favorite.productTypes){
             case 1:
                 RestaurantType = "한식";
                 break;
@@ -103,7 +103,7 @@ function FavoritePage() {
             {/* 실제로 좋아요 눌렀을 때 저장된 데이터가 사용자에게 보여지는 부분, 어떤 내용을 보여줄 지 여기서 결정 */}
             {/* Popover를 통해 즐겨찾기한 식당 위에 마우스를 갖다대면 사진이 보이도록 함 */}
             {/* <Popover content={content} title={`${favorite.productTitle}`} > */}
-                {/* 식당의 이름을 알려줌 */}
+                {/* 식당의 이름을 알려줌, 식당의 이름을 클릭했을 때 식당의 상세 페이지로 이동 */}
             <td><a href={`/product/${favorite.productId}`}>{favorite.productTitle}</a></td>
             {/* </Popover> */}
 

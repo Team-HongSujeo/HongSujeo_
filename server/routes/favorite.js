@@ -20,14 +20,16 @@ router.post('/favoriteNumber', (req, res) => {  // 콜백 function을 통해 Fav
 
 router.post('/favorited', (req, res) => {
     // 내가 이 상품을 Favorite 리스트에 넣었는지에 대한 정보를 DB에서 가져오기
-    // "내가" 이 상품에 대해 좋아요를 눌렀는지 확인하기위해 userFrom을 가져오는 것
+    // "내가" 이 상품에 대해 좋아요를 눌렀는지 확인하기 위해 userFrom을 가져오는 것
     Favorite.find({ "productId": req.body.productId, "userFrom": req.body.userFrom })
         // info가 비어있다면 ( [] 상태 ) -> 내가 아직 Favorite 리스트에 상품을 넣지 않은 것임
         .exec((err, info) => {
             if (err) return res.status(400).send(err)
-            // 그다음에   프론트에  다시   숫자 정보를 보내주기  
+            // 그다음에 프론트에 다시 숫자 정보를 보내주기  
 
             let result = false; // 아직 Favorite List에 넣지 않은 상황
+
+            // info에 내용이 들어있다면
             if (info.length !== 0) {
                 result = true   // Favorite List에 넣은 상황으로 바꿔줌
             }

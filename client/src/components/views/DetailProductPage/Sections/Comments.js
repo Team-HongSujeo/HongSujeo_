@@ -67,7 +67,6 @@ function Comments(props) {
             ))}
 
 
-
             {/* Root Comment Form */}
 
             <form style={{ display: 'flex' }} onSubmit={onSubmit}>

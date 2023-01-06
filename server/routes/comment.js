@@ -39,6 +39,4 @@ router.post("/getComments", (req, res) => {
 });
 
 
-
-
 module.exports = router;

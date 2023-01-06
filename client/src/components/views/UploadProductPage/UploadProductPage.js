@@ -70,7 +70,7 @@ function UploadProductPage(props) {
             //로그인 된 사람의 ID 
             // props를 이용해서 auth.js에서 user의 id를 가져온다.
             writer: props.user.userData._id,
-            title: Title,
+            title: Title,   // 여기서 Title, Description 등은 useState를 통해 이미 세팅된 값을 의미함
             description: Description,
             price: Price,
             images: Images,

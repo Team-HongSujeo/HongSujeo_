@@ -26,12 +26,14 @@ function NavBar() {
   };
 
   return (
+    // menu__logo, menu__container 등은 Sections/Navbar.css에서 정의해 놓았음
     <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
       <div className="menu__logo">
         <a href="/">홍수저</a>
       </div>
       <div className="menu__container">
         <div className="menu_left">
+          {/* LeftMenu, RightMenu는 모두 Sections/ 내부의 파일에서 가져온 것들 */}
           <LeftMenu mode="horizontal" />
         </div>
         <div className="menu_rigth">
@@ -52,7 +54,6 @@ function NavBar() {
           onClose={onClose}
           open={open}
           //visible={visible}
-
         >
           <LeftMenu mode="inline" />
           <RightMenu mode="inline" />

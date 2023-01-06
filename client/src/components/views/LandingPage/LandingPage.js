@@ -12,7 +12,7 @@ import ImageSlider from '../../utils/ImageSlider';
 import Checkbox from './Sections/CheckBox';
 import Radiobox from './Sections/RadioBox';
 import SearchFeature from './Sections/SearchFeature';
-import { restaurantTypes, price } from './Sections/Datas';
+import { restaurantTypes, price } from './Sections/Datas';  // Datas.js에서는 function이 아닌, 정의된 변수 두 개를 가져와서 그것들을 사용할 것이므로 하나 하나 가져오는 듯
 
 // 어떠한 값을 다른 컴포넌트(다른 파일)에게 전달해줘야 할 때, props 를 사용
 function LandingPage(props) {
@@ -79,9 +79,11 @@ const loadMoreHandler = () => {
     setSkip(skip)
 }
 
-// Products에는 현재 여러 개의 product가 들어가있는 상태. 하나하나 컨트롤하기 위해 map 사용
+// Products에는 현재 여러 개의 product가 들어가있는 상태 (setProducts([...Products, ...response.data.productInfo]) 때문인듯).
+// 얘네를 하나하나 컨트롤하기 위해 map 사용
 const renderCards = Products.map((product, index) => {
-    // 한 row는 24사이즈이므로, 화면이 가장 클 때에는 4개의 이미지가 들어가도록 6, 화면이 약간 작을 때에는 3개의 이미지가 들어가도록 8, 가장 작을 떄에는 1개의 이미지가 들어가도록 24
+    // 한 row는 24사이즈이므로, 화면이 가장 클 때에는 4개의 이미지가 들어가도록 6, 화면이 약간 작을 때에는 3개의 이미지가 들어가도록 8,
+    // 가장 작을 떄에는 1개의 이미지가 들어가도록 24
     return <Col lg={6} md={8} xs={24} key={index}>
         <Card
             // href를 통해 상품의 _id에 맞게 endpointer를 지정하고, 상품의 상세 페이지를 볼 수 있는 URL을 만들어 줌
@@ -89,13 +91,13 @@ const renderCards = Products.map((product, index) => {
         >
             <Meta
                 title={product.title}
-                description={`￦${product.price}`}
+                description={`￦${product.price}`}   // ￦는 사용자에게 표시되어야하는 문자이므로, 여기에 추가하여 기입
             />
         </Card>
     </Col>
 })
 
-// 체크박스를 통해 음식의 종류로 필터링된 결과물을 보여주기 위한 함수
+// 체크박스를 통해 "음식의 종류로 필터링"된 결과물을 보여주기 위한 함수
 const showFilteredResults = (filters) => {
   let body = {
     skip: 0,    // 체크박스를 해제하면 다시 처음부터 보여줘야 하므로 0
@@ -107,9 +109,9 @@ const showFilteredResults = (filters) => {
   setSkip(0) // skip을 다시 0으로 세팅
 }
 
-// 체크박스를 통해 가격으로 필터링된 결과물을 보여주기 위한 함수
+// 체크박스를 통해 "가격으로 필터링"된 결과물을 보여주기 위한 함수
 const handlePrice = (value) => {
-    const data = price;
+    const data = price; // Datas.js에서 가져온 price
     let array = [];
 
     // data[key]는 0번째 데이터, 1번째 데이터, 2번째 데이터... (Datas.js의 {} 안의 모든 항목들)
@@ -118,6 +120,7 @@ const handlePrice = (value) => {
             array = data[key].array;
         }
     }
+
     return array;
 }
 
@@ -130,10 +133,10 @@ const handleFilters = (filters, category) => {
     console.log('filters', filters)
 
     if (category === "price") {
-        let priceValues = handlePrice(filters)
+        let priceValues = handlePrice(filters)  // 바로 위에서 구현한 함수 적용
         newFilters[category] = priceValues
     }
-    showFilteredResults(newFilters)
+    showFilteredResults(newFilters) // 바로 위에서 구현한 함수 적용
     setFilters(newFilters) // setFilters를 하지 않으면 필터링 적용이 안됨
 }
 

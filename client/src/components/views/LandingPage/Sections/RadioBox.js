@@ -19,7 +19,7 @@ function RadioBox(props) {
     
 
     const handleChange = (event) => {
-        setValue(event.target.value) // 위 함수에 있는 value가 바뀌고, 결과적으로 아래의 return에 있는 value가 바뀌어 같아지므로 하나밖에 클릭할 수 없는 구조 형성
+        setValue(event.target.value) // useState를 통해 Value가 바뀌고, 결과적으로 아래의 return에 있는 value가 바뀌어 같아지므로 하나밖에 클릭할 수 없는 구조 형성
         props.handleFilters(event.target.value) // LandingPage.js에서 구현, 부모컴포넌트인 LandingPage.js에 전달하기 위한 코드
     }
 
@@ -32,7 +32,6 @@ function RadioBox(props) {
                     <Radio.Group onChange={handleChange} value={Value}>
                         {renderRadioBox()}
                     </Radio.Group>
-
                 </Panel>
             </Collapse>
         </div>

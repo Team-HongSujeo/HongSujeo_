@@ -22,6 +22,8 @@ function DetailProductPage(props) {
   const [Product, setProduct] = useState([]) // 상품 설정
   const [CommentLists, setCommentLists] = useState([]) // 댓글 설정
 
+  // useEffect 라는 Hook 을 사용하면 컴포넌트가 마운트 됐을 때 (처음 나타났을 때), 언마운트 됐을 때 (사라질 때), 그리고 업데이트 될 때 (특정 props가 바뀔 때)
+  // 특정 작업을 처리하는 역할
   useEffect(() => {
     // DB에서 상품을 가져오기 위한 request, 이 부분을 백엔드에 넘겨줌, 하나의 상품만 가져오기 때문에 type=single
     // axios.get이 실행된 결과는 return부분의 Product(props)에 들어가게 됨
@@ -60,7 +62,6 @@ function DetailProductPage(props) {
       <br />
 
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        {/* <button> Favorite </button> 보민이 코드 */}
         {/* 맨 위의 useState에서 Product를 여기에 사용,
         아래에서 3 가지 props를 적용하여 Favorite.js에서 function Favorite(props)의 props에 적용됨
         productId와 userFrom는 Favorite.js에서 variables에서 사용됨, userId는 LoginPage.js와 관련 있음

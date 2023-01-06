@@ -1,3 +1,5 @@
+// 여러 reducer 파일들을 하나로 묶어 관리하는 파일인 듯
+
 import { combineReducers } from 'redux';
 import user from './user_reducer';
 

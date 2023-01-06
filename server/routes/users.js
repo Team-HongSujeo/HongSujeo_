@@ -10,11 +10,9 @@ const { auth } = require("../middleware/auth"); // auth는 middleware로 중간�
 router.get("/auth", auth, (req, res) => {
     // 여기까지 미들웨어를 통과해 왔다는 얘기는 Authentication이 True라는 말.
     res.status(200).json({
-        _id: req.user._id,
-        // role이 0이면 일반유저, role이 0이 아니면 관리자
-        isAdmin: req.user.role === 0 ? false : true,
-        // 인증된 사람인지, 즉 로그인된 사람인지
-        isAuth: true,
+        _id: req.user._id,  // req로 날아온 user의 _id를 _id로 하여 res(응답)를 보내는 역할인 듯?
+        isAdmin: req.user.role === 0 ? false : true, // role이 0이면 일반유저, role이 0이 아니면 관리자
+        isAuth: true, // 인증된 사람인지, 즉 로그인된 사람인지
         email: req.user.email,
         name: req.user.name,
         lastname: req.user.lastname,
@@ -37,7 +35,7 @@ router.post("/register", (req, res) => {
     //}
 
     // user의 내용이 mongodb에 저장
-    // 저장에 앞서 비밀번호 암호화 하는 것이 위에 과정
+    // 저장에 앞서 비밀번호 암호화 하는 것이 선행되어야 함
     user.save((err, doc) => {
         if (err) return res.json({ success: false, err });
         // err가 없는 경우 즉, json파일로 보냈는데 성공할 경우, success : true가 뜨도록 함
@@ -57,11 +55,11 @@ router.post("/login", (req, res) => {
                 message: "Auth failed, email not found"
             });
 
-        // 요청된 이메일이 DB에 있다면 비번이 맞는 비번인지 확인한다.
+        // 요청된 이메일이 DB에 있다면 비번이 맞는 비번인지 확인한다. User.js에서 이 함수에 대해 정의했음
         user.comparePassword(req.body.password, (err, isMatch) => {
             if (!isMatch)
                 return res.json({ loginSuccess: false, message: "Wrong password" });
-            // 비번까지 맞다면, 토큰을 생성한다.
+            // 비번까지 맞다면, 토큰을 생성한다. User.js에서 이 함수에 대해 정의했음
             user.generateToken((err, user) => {
                 if (err) return res.status(400).send(err);
                 res.cookie("w_authExp", user.tokenExp);

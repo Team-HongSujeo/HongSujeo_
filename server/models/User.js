@@ -12,7 +12,7 @@ const userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        trim: true,  // 공백을 없애주는 역할을 trim이 수행 croco 1997 -> croco1997
+        trim: true,  // 공백을 없애주는 역할을 trim이 수행 test 1 -> test1
         unique: 1
     },
     password: {
@@ -28,8 +28,7 @@ const userSchema = mongoose.Schema({
     role: {
         type: Number,
         default: 0
-    },
-    image: String,
+    }, // image는 뭐에 쓰이길래 string으로 저장한걸까? image string은 지워도 될 듯?
     token: {
         type: String
     },
@@ -66,7 +65,7 @@ userSchema.pre('save', function (next) {
 // plainPassword 1234567
 // 암호화된 비밀번호 : $2b$10$..g.GzGNrtogcFlso8Xljesqz88pb85gvecaUMz3P0n95NI0N03w6
 // 두 개가 같은지 체크
-// 방법은 plainPassword를 다시 암호화해서 암호화된 코드와 비교
+// 방법은 plainPassword를 다시 암호화해서 암호화된 코드와 비교, routes/users.js에서 사용
 userSchema.methods.comparePassword = function (plainPassword, cb) {
     bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
         if (err) return cb(err);
@@ -74,7 +73,7 @@ userSchema.methods.comparePassword = function (plainPassword, cb) {
     })
 }
 
-// 토큰 생성
+// 토큰 생성, routes/users.js에서 사용
 userSchema.methods.generateToken = function (cb) {
     var user = this;
     // jsonwebtoken을 이용해서 token을 생성하기 
@@ -88,6 +87,7 @@ userSchema.methods.generateToken = function (cb) {
     })
 }
 
+// middleware/auth.js에서 이 함수 사용
 userSchema.statics.findByToken = function(token, cb) {
     var user = this;
     // veryfy를 통해 토큰을 decode 한다. 

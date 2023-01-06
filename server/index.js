@@ -26,7 +26,7 @@ app.use(cors())
 // router사용을 위해 routes폴더를 만들고, 그 안에 파일을 만든다.
 // router는 웹페이지의 get, post 등의 request와 연관이 있다.
 // index.js의 코드가 길어짐을 방지하고, 유지 보수를 위해 파일을 따로 관리한다.
-app.use('/api/users', require('./routes/users')); // endpointer에 해당되는 request를 관리 (login, logout 등...)
+app.use('/api/users', require('./routes/users')); // endpointer에 해당되는 request를 관리 (login, logout 등...) ./routes/users를 /api/users로 칭하는 듯
 app.use('/api/product', require('./routes/product')); // 상품 관련 스키마 관리 (상품 등록도 여기서)
 app.use('/api/comment', require('./routes/comment')); // 댓글을 관리
 app.use('/api/favorite', require('./routes/favorite')); // 식당 즐겨찾기를 관리
@@ -35,11 +35,13 @@ app.use('/api/favorite', require('./routes/favorite')); // 식당 즐겨찾기�
 //https://stackoverflow.com/questions/48914987/send-image-path-from-node-js-express-server-to-react-client
 app.use('/uploads', express.static('uploads')); // 상품 등록시 uploads에 저장하기 위한 코드
 
-const mongoose = require('mongoose')
+
+const mongoose = require('mongoose') // mongoose를 통해 mongoDB와 js를 연결
+
 mongoose.connect(config.mongoURI).then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err))
 
-// Serve static assets if in production
+// Serve static assets if in production, config/key.js에서 production인 경우, 이 if문에 걸림
 if (process.env.NODE_ENV === "production") {
   // 정적인 폴더 하나를 설정
   // js와 css파일은 이 폴더로부터 내용을 읽을 것이고, 이 폴더에 저장할 것

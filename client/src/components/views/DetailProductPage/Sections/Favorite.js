@@ -5,7 +5,7 @@ import Axios from 'axios'
 import { Button } from 'antd';
 
 function Favorite(props) {
-    // 여기서 설정한 변수들(productTitle...)은 Favorite.js에 있는 스키마와 일치해야 함
+    // 여기서 설정한 변수들(productTitle...)은 server 측의 Favorite.js에 있는 스키마와 일치해야 함
     const productId = props.productId // DetailProductPage에서 props를 설정할 때 productId로 설정했기 때문에 이렇게 코딩
     const userFrom = props.userFrom     // userFrom은 DetailProductPage에서 가져온 것
     const productTitle = props.productInfo.title    // productInfo는 DetailProductPage에서 가져온 것
@@ -16,7 +16,7 @@ function Favorite(props) {
     const [FavoriteNumber, setFavoriteNumber] = useState(0)
     const [Favorited, setFavorited] = useState(false)
 
-    // 얘네가 post request의 argument로 들어감, 아래에 사용되는 함수에서 variables를 모두 사용할 수 있도록 Favorite함수 전역에 지정
+    // 얘네가 post request의 argument로 들어감, 이 아래에 등장하는 함수에서 variables를 모두 사용할 수 있도록 Favorite함수 전역에 지정
     let variables = {
         userFrom: userFrom, // 누가 좋아요를 눌렀는지
         productId: productId,   // 어떤 상품을 좋아요를 눌렀는지
@@ -48,9 +48,6 @@ function Favorite(props) {
                     alert('정보를 가져오는데 실패 했습니다.')
                 }
             })
-
-
-
     }, [])
 
     // favorite 버튼을 눌렀을 때 실행되는 함수
@@ -92,7 +89,7 @@ function Favorite(props) {
                 False인 경우 아직 즐겨찾기 하지 않은 상태이므로 Add to Favorite가 보이게 함 */}
             {/* FavoriteNumber를 통해 좋아요 늘러진 수도 함께 표기 */}
             {/* 버튼 UI를 예쁘게 하기 위해 antd에서 가져온 Button */}
-            <Button onClick={onClickFavorite}>{Favorited ? " Not Favorite" : "Add to Favorite "}  {FavoriteNumber}  </Button>
+            <Button onClick={onClickFavorite}>{Favorited ? "Not Favorite" : "Add to Favorite "}  {FavoriteNumber}  </Button>
         </div>
     )
 }

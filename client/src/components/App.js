@@ -32,7 +32,7 @@ function App() {
         <div>
           <Routes>
             {
-              // path는 endpointer를 정하는거고
+              // path는 app 내부의 경로를 설정하는 endpointer를 정하는거고
               // element={<LandingPage />}에서 LandingPage는 내가 만든 페이지 이름으로, 실제 코드가 작동하는 부분
             }
             {
@@ -76,7 +76,7 @@ function App() {
 export default App;
 
 // export default :
-// 코딩중 export할 파일소스내 제일처음 export default로 정의한 클래스(함수, 변수등 모든 정의되것들)로 가지고옴
-// 같은 소스내에 export default로 정의한 것들이 여러개 있다하더라도 제일처음 정의 한건만 가능
+// 코딩 중 export할 파일소스 내 제일 처음 export default로 정의한 클래스(함수, 변수등 모든 정의되것들)로 가지고옴
+// 같은 소스 내에 export default로 정의한 것들이 여러 개 있다 하더라도 제일 처음 정의한 것만 가능
 
 // export : export할 파일소스내의 클래스(함수, 변수등 모든 정의되것들)들 중 “import {그안에 들어있는 것들중1, 것들중2,것들중3, 계속추가} from 파일.js” 처럼 특정해서 사용됨

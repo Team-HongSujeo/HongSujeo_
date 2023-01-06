@@ -9,7 +9,7 @@ const { TextArea } = Input;
 
 // Comments.js와 상호작용하기 위한 props
 function SingleComment(props) {
-    const user = useSelector(state => state.user);
+    const user = useSelector(state => state.user); // redux를 통해 로그인된 유저의 정보를 가져오기 위해 사용
     const [CommentValue, setCommentValue] = useState("")
     const [OpenReply, setOpenReply] = useState(false) // 처음에는 reply부분이 숨겨져 있어야 하므로 false
 

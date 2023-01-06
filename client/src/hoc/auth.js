@@ -25,10 +25,10 @@ export default function (SpecificComponent, option, adminRoute = null) {
         const navigate = useNavigate();
 
         useEffect(() => {
-            // Axios.get('/api/users/auth)를 쓸 수 있지만, 대신에 redux를 사용한다.
+            // Axios.get('/api/users/auth)를 쓸 수 있지만, 대신에 react-redux를 사용한다.
             dispatch(auth()).then(response => {
                 console.log(response);
-                //로그인 하지 않은 상태 
+                //로그인 하지 않은 상태
                 if (!response.payload.isAuth) {
                     // 로그인하지 않은 상태인데, 로그인한 유저만 출입 가능한 페이지로 들어가려 하는 경우
                     // login페이지로 강제로 이동시킨다.

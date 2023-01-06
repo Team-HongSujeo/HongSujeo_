@@ -1,19 +1,10 @@
 // 상품 상세 페이지에서 상품의 정보를 보여주는 파일
-// add to cart 기능은 나중에 좋아하는 밥집들 찜해놓은 목록으로 만들어놓을 수 있을 듯
 
 import React from 'react'
 import { Button, Descriptions } from 'antd'; // 상품 상세 페이지에서 design을 위해 필요한 애들 import
 //import { useDispatch } from 'react-redux';
 
 function ProductInfo(props) {
-    //const dispatch = useDispatch();
-
-    // 즐겨찾기 버튼을 클릭했을 때 실행되어야 할 함수, 즐겨찾기를 모아둔 또 다른 페이지로 이동해야할 듯
-    const clickHandler = () => {
-        //필요한 정보를 Cart 필드에다가 넣어 준다.
-        //dispatch(addToCart(props.detail._id))
-    }
-
     return (
         <div>
             <Descriptions title="식당 정보">
@@ -28,14 +19,6 @@ function ProductInfo(props) {
             <br />
             <br />
             <br />
-            {/* 즐겨찾기 추가하는 버튼 생성, 그에 대한 페이지는 따로 만들어야 할 듯 */}
-        {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button size="large" shape="round" type="danger" onClick={clickHandler}>
-                    즐겨찾기 추가
-                </Button>
-            </div> 일단 보류 */}
-
-
         </div>
     )
 }

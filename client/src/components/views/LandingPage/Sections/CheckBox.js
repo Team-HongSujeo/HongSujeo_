@@ -10,7 +10,7 @@ function CheckBox(props) {
     const [Checked, setChecked] = useState([])
 
     const handleToggle = (value) => {
-        const currentIndex = Checked.indexOf(value) //누른 것의 Index를 구하고 
+        const currentIndex = Checked.indexOf(value) // 체크박스에서 누른 것의 Index를 구하고 
         const newChecked = [...Checked] // 전체 Checked된 State를 가져오기 위해 [...Checked]
 
         //전체 Checked된 State에서 현재 누른 Checkbox가 없다면 ( indexOf(value)가 -1인 경우 )
@@ -25,7 +25,7 @@ function CheckBox(props) {
     }
 
 
-    // props의 list가 존재하고, props list를 하나하나 매칭시킨다면(?)
+    // props의 list가 존재한다면 props list를 하나하나 매칭시킨다.
     const renderCheckboxLists = () => props.list && props.list.map((value, index) => (
         <React.Fragment key={index} >
             {/* onChange시 handleToggle실행, value._id는 Datas.js에서 각각의 아이템에 해당하는 _id값 */}

@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Dropzone from 'react-dropzone' // 컴퓨터 내의 이미지를 서버로 올리기 위해 필요한 라이브러리
 //import Icon from '@ant-design/icons';
-import {  PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
 // 여기서 등록된 이미지를 UploadProductPage.js에서 사용할 수 있도록 하기 위해 props parameter 필요
@@ -21,11 +21,12 @@ function FileUpload(props) {
         const config = {
             header: { 'content-type': 'multipart/fomr-data' }
         }
+
         formData.append("file", files[0])
 
         // 반드시 formData와 config를 같이 넣어줘야 함. 그래야 에러가 발생하지 않음
         axios.post('/api/product/image', formData, config)
-            // 전달된 정보는 response 안에 들어있음
+            // 백엔드를 통해 전달된 정보는 response 안에 들어있음
             .then(response => {
                 if (response.data.success) {
                     // ...을 통해 올라온 이미지들을 모두 넣어줌. response.data.filePath는 또 다시 새롭게 등록되는 이미지를 위해 필요
